@@ -150,12 +150,12 @@ tr:not(:last-child) td {
 <div class="title">Arbeidsoppgaver</div>
 
 <div class="kpi">
-  <div class="kpi-box"><span>Denne uke</span><strong>@{if(equals(variables('RowsToday'),''),'0',sub(length(split(variables('RowsToday'),'<tr')),1))}</strong></div>
-  <div class="kpi-box"><span>Neste uke</span><strong>@{if(equals(variables('RowsNextWeek'),''),'0',sub(length(split(variables('RowsNextWeek'),'<tr')),1))}</strong></div>
-  <div class="kpi-box"><span>Senere</span><strong>@{if(equals(variables('RowsLater'),''),'0',sub(length(split(variables('RowsLater'),'<tr')),1))}</strong></div>
-  <div class="kpi-box"><span>High</span><strong>@{add(add(if(equals(variables('RowsToday'),''),0,sub(length(split(variables('RowsToday'),'prio-high')),1)),if(equals(variables('RowsNextWeek'),''),0,sub(length(split(variables('RowsNextWeek'),'prio-high')),1))),if(equals(variables('RowsLater'),''),0,sub(length(split(variables('RowsLater'),'prio-high')),1)))}</strong></div>
-  <div class="kpi-box"><span>Medium</span><strong>@{add(add(if(equals(variables('RowsToday'),''),0,sub(length(split(variables('RowsToday'),'prio-medium')),1)),if(equals(variables('RowsNextWeek'),''),0,sub(length(split(variables('RowsNextWeek'),'prio-medium')),1))),if(equals(variables('RowsLater'),''),0,sub(length(split(variables('RowsLater'),'prio-medium')),1)))}</strong></div>
-  <div class="kpi-box"><span>Low</span><strong>@{add(add(if(equals(variables('RowsToday'),''),0,sub(length(split(variables('RowsToday'),'prio-low')),1)),if(equals(variables('RowsNextWeek'),''),0,sub(length(split(variables('RowsNextWeek'),'prio-low')),1))),if(equals(variables('RowsLater'),''),0,sub(length(split(variables('RowsLater'),'prio-low')),1)))}</strong></div>
+  <div class="kpi-box"><span>Denne uke</span><strong>5</strong></div>
+  <div class="kpi-box"><span>Neste uke</span><strong>8</strong></div>
+  <div class="kpi-box"><span>Senere</span><strong>3</strong></div>
+  <div class="kpi-box"><span>High</span><strong>2</strong></div>
+  <div class="kpi-box"><span>Medium</span><strong>10</strong></div>
+  <div class="kpi-box"><span>Low</span><strong>4</strong></div>
 </div>
 
 <div class="grid">
@@ -164,7 +164,7 @@ tr:not(:last-child) td {
 <h2>Denne uke + Forfalt</h2>
 <table>
 <tr><th>Dato</th><th>Prio</th><th>Type</th><th>SN</th><th>Ansvar</th></tr>
-@{if(equals(variables('RowsToday'),''),'<tr><td colspan="5" class="empty">Ingen oppgaver</td></tr>',variables('RowsToday'))}
+<tr class="task-row alarm-row"><td class="date-cell">09.06</td><td class="prio-cell prio-high">High</td><td class="type-cell">AM- XW</td><td class="sn-cell">A67504</td><td class="mech-cell"></td></tr><tr class="task-row alarm-row"><td class="date-cell">11.06</td><td class="prio-cell prio-high">High</td><td class="type-cell">AM- XW</td><td class="sn-cell">A67xxx</td><td class="mech-cell"></td></tr><tr class="task-row medium-row"><td class="date-cell">11.06</td><td class="prio-cell prio-medium">Medium</td><td class="type-cell">AM- XW</td><td class="sn-cell">A67xxx</td><td class="mech-cell">Mikal / Thomas</td></tr><tr class="task-row medium-row"><td class="date-cell">12.06</td><td class="prio-cell prio-medium">Medium</td><td class="type-cell">DAM</td><td class="sn-cell">A82125</td><td class="mech-cell">Mikal / Thomas</td></tr><tr class="task-row medium-row"><td class="date-cell">12.06</td><td class="prio-cell prio-medium">Medium</td><td class="type-cell">DAM</td><td class="sn-cell">A67380</td><td class="mech-cell">Mikal / Thomas</td></tr>
 </table>
 </div>
 
@@ -172,7 +172,7 @@ tr:not(:last-child) td {
 <h2>Neste uke</h2>
 <table>
 <tr><th>Dato</th><th>Prio</th><th>Type</th><th>SN</th><th>Ansvar</th></tr>
-@{if(equals(variables('RowsNextWeek'),''),'<tr><td colspan="5" class="empty">Ingen oppgaver</td></tr>',variables('RowsNextWeek'))}
+<tr class="task-row medium-row"><td class="date-cell">16.06</td><td class="prio-cell prio-medium">Medium</td><td class="type-cell">AM- XW</td><td class="sn-cell">A82158</td><td class="mech-cell"></td></tr><tr class="task-row medium-row"><td class="date-cell">17.06</td><td class="prio-cell prio-medium">Medium</td><td class="type-cell">DAM</td><td class="sn-cell">A47163</td><td class="mech-cell">Mikal / Thomas</td></tr><tr class="task-row medium-row"><td class="date-cell">17.06</td><td class="prio-cell prio-medium">Medium</td><td class="type-cell">DAM</td><td class="sn-cell">A47190</td><td class="mech-cell">Mikal / Thomas</td></tr><tr class="task-row medium-row"><td class="date-cell">17.06</td><td class="prio-cell prio-medium">Medium</td><td class="type-cell">DAM</td><td class="sn-cell">A47163</td><td class="mech-cell">Mikal / Thomas</td></tr><tr class="task-row medium-row"><td class="date-cell">17.06</td><td class="prio-cell prio-medium">Medium</td><td class="type-cell">DAM</td><td class="sn-cell">A95047</td><td class="mech-cell">Mikal / Thomas</td></tr><tr class="task-row medium-row"><td class="date-cell">17.06</td><td class="prio-cell prio-medium">Medium</td><td class="type-cell">DAM</td><td class="sn-cell">A95043</td><td class="mech-cell">Mikal / Thomas</td></tr><tr class="task-row medium-row"><td class="date-cell">17.06</td><td class="prio-cell prio-medium">Medium</td><td class="type-cell">DAM</td><td class="sn-cell">A82095</td><td class="mech-cell">Mikal / Thomas</td></tr><tr class="task-row low-row"><td class="date-cell">17.06</td><td class="prio-cell prio-low">Low</td><td class="type-cell">Sortere WIRE kit</td><td class="sn-cell"></td><td class="mech-cell">Thomas</td></tr>
 </table>
 </div>
 
@@ -180,7 +180,7 @@ tr:not(:last-child) td {
 <h2>Senere</h2>
 <table>
 <tr><th>Dato</th><th>Prio</th><th>Type</th><th>SN</th><th>Ansvar</th></tr>
-@{if(equals(variables('RowsLater'),''),'<tr><td colspan="5" class="empty">Ingen oppgaver</td></tr>',variables('RowsLater'))}
+<tr class="task-row low-row"><td class="date-cell">23.06</td><td class="prio-cell prio-low">Low</td><td class="type-cell">DAM</td><td class="sn-cell"></td><td class="mech-cell"></td></tr><tr class="task-row low-row"><td class="date-cell">23.06</td><td class="prio-cell prio-low">Low</td><td class="type-cell">DAM</td><td class="sn-cell"></td><td class="mech-cell"></td></tr><tr class="task-row low-row"><td class="date-cell">01.08</td><td class="prio-cell prio-low">Low</td><td class="type-cell">Rydde til åpningsfest</td><td class="sn-cell"></td><td class="mech-cell">Bernhard</td></tr>
 </table>
 </div>
 
