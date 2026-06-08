@@ -1,0 +1,192 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="60">
+
+<style>
+body {
+  margin:0;
+  font-family: 'Segoe UI', Arial;
+  background:#050b18;
+  color:#e5e7eb;
+}
+
+/* LAYOUT */
+.wrapper {
+  max-width: 1800px;
+  margin:auto;
+  padding:24px;
+}
+
+.title {
+  font-size:56px;
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+/* GRID */
+.grid {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:24px;
+}
+
+/* CARD */
+.card {
+  background:#081225;
+  border-radius:14px;
+  padding:18px;
+}
+
+.today { border-top:6px solid #ef4444; }
+.next { border-top:6px solid #f59e0b; }
+.later { border-top:6px solid #22c55e; }
+
+/* TABLE */
+table {
+  width:100%;
+  border-collapse: collapse;
+  table-layout: auto;
+  font-size:18px;
+}
+
+th {
+  text-align:left;
+  padding-bottom:10px;
+  color:#94a3b8;
+  font-size:14px;
+}
+
+/* ROWS */
+td {
+  padding:12px 6px;
+  vertical-align: top;
+  line-height:1.2;
+}
+
+tr:not(:last-child) td {
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* COLUMNS */
+.date-cell { min-width:80px; font-weight:700; white-space:nowrap; }
+.prio-cell { min-width:80px; font-weight:700; }
+.type-cell { min-width:160px; word-break: break-word; }
+.sn-cell { min-width:90px; white-space:nowrap; }
+.mech-cell { min-width:120px; word-break: break-word; }
+
+/* PRIORITY */
+.prio-high { color:#f87171; }
+.prio-medium { color:#facc15; }
+.prio-low { color:#4ade80; }
+
+/* ✅ FORFALT – hovedhighlight */
+.overdue-row {
+  background: rgba(239,68,68,0.18);
+  box-shadow: inset 0 0 20px rgba(239,68,68,0.2);
+}
+
+.overdue-row td {
+  font-weight:700;
+}
+
+/* Venstre indikator */
+.overdue-row td:first-child {
+  border-left:6px solid #ef4444;
+}
+
+/* Ekstra tydelig dato */
+.overdue-row .date-cell {
+  color:#fca5a5;
+}
+
+/* Valgfritt ikon */
+.overdue-row .date-cell::before {
+  content:"⚠ ";
+}
+
+/* High (som ikke er forfalt) */
+.alarm-row {
+  background: rgba(248,113,113,0.08);
+}
+
+/* KPI */
+.kpi {
+  display:grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.kpi-box {
+  background:#081225;
+  padding:12px;
+  border-radius:10px;
+  text-align:center;
+}
+
+.kpi-box span {
+  display:block;
+  font-size:12px;
+  color:#94a3b8;
+}
+
+.kpi-box strong {
+  font-size:28px;
+}
+
+.empty {
+  opacity:0.4;
+  padding:20px;
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="title">Arbeidsoppgaver</div>
+
+<div class="kpi">
+  <div class="kpi-box"><span>Denne uke</span><strong>@{if(equals(variables('RowsToday'),''),'0',sub(length(split(variables('RowsToday'),'<tr')),1))}</strong></div>
+  <div class="kpi-box"><span>Neste uke</span><strong>@{if(equals(variables('RowsNextWeek'),''),'0',sub(length(split(variables('RowsNextWeek'),'<tr')),1))}</strong></div>
+  <div class="kpi-box"><span>Senere</span><strong>@{if(equals(variables('RowsLater'),''),'0',sub(length(split(variables('RowsLater'),'<tr')),1))}</strong></div>
+  <div class="kpi-box"><span>High</span><strong>@{add(add(if(equals(variables('RowsToday'),''),0,sub(length(split(variables('RowsToday'),'prio-high')),1)),if(equals(variables('RowsNextWeek'),''),0,sub(length(split(variables('RowsNextWeek'),'prio-high')),1))),if(equals(variables('RowsLater'),''),0,sub(length(split(variables('RowsLater'),'prio-high')),1)))}</strong></div>
+  <div class="kpi-box"><span>Medium</span><strong>@{add(add(if(equals(variables('RowsToday'),''),0,sub(length(split(variables('RowsToday'),'prio-medium')),1)),if(equals(variables('RowsNextWeek'),''),0,sub(length(split(variables('RowsNextWeek'),'prio-medium')),1))),if(equals(variables('RowsLater'),''),0,sub(length(split(variables('RowsLater'),'prio-medium')),1)))}</strong></div>
+  <div class="kpi-box"><span>Low</span><strong>@{add(add(if(equals(variables('RowsToday'),''),0,sub(length(split(variables('RowsToday'),'prio-low')),1)),if(equals(variables('RowsNextWeek'),''),0,sub(length(split(variables('RowsNextWeek'),'prio-low')),1))),if(equals(variables('RowsLater'),''),0,sub(length(split(variables('RowsLater'),'prio-low')),1)))}</strong></div>
+</div>
+
+<div class="grid">
+
+<div class="card today">
+<h2>Denne uke + Forfalt</h2>
+<table>
+<tr><th>Dato</th><th>Prio</th><th>Type</th><th>SN</th><th>Ansvar</th></tr>
+@{if(equals(variables('RowsToday'),''),'<tr><td colspan="5" class="empty">Ingen oppgaver</td></tr>',variables('RowsToday'))}
+</table>
+</div>
+
+<div class="card next">
+<h2>Neste uke</h2>
+<table>
+<tr><th>Dato</th><th>Prio</th><th>Type</th><th>SN</th><th>Ansvar</th></tr>
+@{if(equals(variables('RowsNextWeek'),''),'<tr><td colspan="5" class="empty">Ingen oppgaver</td></tr>',variables('RowsNextWeek'))}
+</table>
+</div>
+
+<div class="card later">
+<h2>Senere</h2>
+<table>
+<tr><th>Dato</th><th>Prio</th><th>Type</th><th>SN</th><th>Ansvar</th></tr>
+@{if(equals(variables('RowsLater'),''),'<tr><td colspan="5" class="empty">Ingen oppgaver</td></tr>',variables('RowsLater'))}
+</table>
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
