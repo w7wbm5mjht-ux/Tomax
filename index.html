@@ -2,42 +2,56 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="refresh" content="60">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body {
+
+html, body {
   margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
   font-family: 'Segoe UI', Arial;
   background:#050b18;
   color:#e5e7eb;
 }
 
-/* LAYOUT */
-.wrapper {
-  max-width: 1800px;
-  margin:auto;
-  padding:24px;
+/* SCALING FOR INFOSKJERM */
+body {
+  transform: scale(0.95);
+  transform-origin: top left;
 }
 
+/* LAYOUT */
+.wrapper {
+  width:100%;
+  padding:20px;
+  box-sizing:border-box;
+}
+
+/* HEADER */
 .title {
-  font-size:56px;
+  font-size:50px;
   font-weight:800;
-  margin-bottom:20px;
+  margin-bottom:15px;
 }
 
 /* GRID */
 .grid {
   display:grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap:24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap:20px;
+  width:100%;
 }
 
 /* CARD */
 .card {
   background:#081225;
   border-radius:14px;
-  padding:18px;
+  padding:16px;
 }
 
+/* CARD COLORS */
 .today { border-top:6px solid #ef4444; }
 .next { border-top:6px solid #f59e0b; }
 .later { border-top:6px solid #22c55e; }
@@ -54,95 +68,68 @@ th {
   text-align:left;
   padding-bottom:10px;
   color:#94a3b8;
-  font-size:14px;
+  font-size:13px;
 }
 
-/* ROWS */
 td {
-  padding:12px 6px;
-  vertical-align: top;
+  padding:10px 6px;
   line-height:1.2;
-}
-
-tr:not(:last-child) td {
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  overflow:hidden;
 }
 
 /* COLUMNS */
-.date-cell { min-width:80px; font-weight:700; white-space:nowrap; }
-.prio-cell { min-width:80px; font-weight:700; }
-.type-cell { min-width:160px; word-break: break-word; }
-.sn-cell { min-width:90px; white-space:nowrap; }
-.mech-cell { min-width:120px; word-break: break-word; }
+.date-cell { min-width:70px; font-weight:700; }
+.prio-cell { min-width:70px; font-weight:700; }
+.type-cell { min-width:120px; word-break: break-word; }
+.sn-cell { min-width:70px; }
+.mech-cell { min-width:100px; word-break: break-word; }
 
-/* PRIORITY */
+/* PRIORITY COLORS */
 .prio-high { color:#f87171; }
 .prio-medium { color:#facc15; }
 .prio-low { color:#4ade80; }
 
-/* ✅ FORFALT – hovedhighlight */
+/* FORFALT */
 .overdue-row {
   background: rgba(239,68,68,0.18);
-  box-shadow: inset 0 0 20px rgba(239,68,68,0.2);
 }
-
-.overdue-row td {
-  font-weight:700;
-}
-
-/* Venstre indikator */
 .overdue-row td:first-child {
-  border-left:6px solid #ef4444;
-}
-
-/* Ekstra tydelig dato */
-.overdue-row .date-cell {
-  color:#fca5a5;
-}
-
-/* Valgfritt ikon */
-.overdue-row .date-cell::before {
-  content:"⚠ ";
-}
-
-/* High (som ikke er forfalt) */
-.alarm-row {
-  background: rgba(248,113,113,0.08);
+  border-left:4px solid #ef4444;
 }
 
 /* KPI */
 .kpi {
   display:grid;
   grid-template-columns: repeat(6, 1fr);
-  gap:12px;
-  margin-bottom:16px;
+  gap:10px;
+  margin-bottom:12px;
 }
 
 .kpi-box {
   background:#081225;
-  padding:12px;
+  padding:10px;
   border-radius:10px;
   text-align:center;
 }
 
 .kpi-box span {
-  display:block;
-  font-size:12px;
+  font-size:11px;
   color:#94a3b8;
+  display:block;
 }
 
 .kpi-box strong {
-  font-size:28px;
+  font-size:24px;
 }
 
 .empty {
   opacity:0.4;
-  padding:20px;
   text-align:center;
+  padding:20px;
 }
+
 </style>
 </head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body>
 
@@ -191,3 +178,4 @@ tr:not(:last-child) td {
 
 </body>
 </html>
+``
